@@ -6,7 +6,7 @@
 @layer components {
   
   .hero__section{
-    @apply  bg-[url('public/plage2.jpg')] bg-no-repeat bg-cover bg-center w-full h-[500px]  ;
+    @apply  bg-[url('../../public/plage2.jpg')] bg-no-repeat bg-cover bg-center w-full h-[500px]  ;
   }
   .form_input{
     @apply  w-full px-4 py-3 border border-solid border-[#0066ff73] focus:outline-none

@@ -6,7 +6,7 @@ import SearchBar from "../shared/SearchBar";
 import Soutitre from "../shared/Soutitre";
 import GalleryList from "./GalleryList";
 import comoros from "../assets/data/tours.js";
-
+import imgh from "../../public/plage2.jpg"
 // import { comoros } from "../assets/data/iles";
 import Newsletter from "../shared/Newsletter";
 const Home = () => {
