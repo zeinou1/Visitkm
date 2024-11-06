@@ -15,7 +15,7 @@
     rounded-md
   }
   .banner__foot{
-    @apply  bg-[url('./assets/images/img-booking/bgComors.webp')] bg-no-repeat bg-cover bg-center w-full  ;
+    @apply  bg-[url('./assets/images/hotelbg.jpg')] bg-no-repeat bg-cover bg-center w-full  ;
   }
   .section__common{
     @apply  bg-[url('./assets/images/img-booking/imgfoot.png')] bg-no-repeat bg-cover bg-center w-full h-[500px] ;
