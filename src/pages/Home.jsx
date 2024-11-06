@@ -12,8 +12,8 @@ import Newsletter from "../shared/Newsletter";
 const Home = () => {
   return (
     <>
-      <section className="md:max-w-7xl md:px-[50px] ">
-        <div className="hero__section relative  ">
+      <section className="md:max-w-7xl  ">
+        <div className="bg-[url('../../public/plage2.jpg')] bg-no-repeat bg-cover bg-center w-full h-[500px]  relative  ">
           {/* -------hero--------- */}
           <div className=" ">
             <div className="hero__content px-[29px]">
