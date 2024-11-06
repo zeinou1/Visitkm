@@ -13,7 +13,7 @@ const Home = () => {
   return (
     <>
       <section className="md:max-w-7xl md:px-[50px] ">
-        <div className="hero__section relative  ">
+        <div className={`hero__section bg-[url('src/assets/images/img/plage2.jpg')] relative  `}>
           {/* -------hero--------- */}
           <div className=" ">
             <div className="hero__content px-[29px]">
