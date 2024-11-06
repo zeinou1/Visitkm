@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+  
+  .hero__section{
+    @apply  bg-[url('./src/assets/images/bgComors.jpg')] bg-no-repeat bg-cover bg-center w-full h-[500px]  ;
+  }
+  .form_input{
+    @apply  w-full px-4 py-3 border border-solid border-[#0066ff73] focus:outline-none
+    focus:border-primaryColor text-[16px] leading-7 text-headingColor placeholder:text-textColor cursor-pointer
+    rounded-md
+  }
+  .banner__foot{
+    @apply  bg-[url('./assets/images/img-booking/bgComors.webp')] bg-no-repeat bg-cover bg-center w-full  ;
+  }
+  .section__common{
+    @apply  bg-[url('./assets/images/img-booking/imgfoot.png')] bg-no-repeat bg-cover bg-center w-full h-[500px] ;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('./assets/images/hotelbg.jpg');
+  }
+}
