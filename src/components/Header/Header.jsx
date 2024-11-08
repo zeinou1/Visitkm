@@ -72,9 +72,13 @@ function Header() {
     //todo:  méthode  redux
 
     const dispatch = useDispatch();
+    
     const profile = useSelector((state) => state.profile);
 
     const {isAuthenticated} = useSelector((state) => state.user);
+
+    
+
 
     console.log(isAuthenticated);
     // dispatch(userProfile({ id: userId, token: userToken }));

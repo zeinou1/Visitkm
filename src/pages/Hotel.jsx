@@ -4,9 +4,12 @@ import Newsletter from "../shared/Newsletter";
 import HotelsCard from "../pages/HotelsCard";
 //! data source
 import useFetch from "../hooks/useFetch";
-import { BASE_URL } from "../utils/config"; //! api/v1
+import { BASE_URL } from "../utils/config";
+import {useSelector,useDispatch} from "react-redux";
+import {hotelInfos} from "../components/Features/Hotel/HotelListSlice.jsx"; //! api/v1
 
 const Hotel = () => {
+  const dispatch = useDispatch()
   // pagination
   const [pageCount, setPageCount] = useState(0);
   const [page, setPage] = useState(0);
