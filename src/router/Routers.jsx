@@ -16,7 +16,7 @@ const Routers = () => {
   const {isAuthenticated} = useSelector((state) => state.user)
   return (
     <Routes>
-      {/* <Route path='/' element={<Navigate to='/home' />} /> */}
+      <Route path='/' element={<Home />} />
       <Route path='/home' element={<Home />} />
       <Route path='/hotels' element={<Hotel />} />
       <Route path='/hotels/:id' element={<HotelDetails />} />
