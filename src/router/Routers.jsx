@@ -16,14 +16,14 @@ const Routers = () => {
   const {isAuthenticated} = useSelector((state) => state.user)
   return (
     <Routes>
-      <Route path='/' element={<Navigate to='/home' />} />
+      {/* <Route path='/' element={<Navigate to='/home' />} /> */}
       <Route path='/home' element={<Home />} />
       <Route path='/hotels' element={<Hotel />} />
       <Route path='/hotels/:id' element={<HotelDetails />} />
       <Route path='/login/' element={<Login />} />
       <Route path='/register' element={<Register />} />
 
-          <Route path='/users/:id' element={ isAuthenticated ? <ProtectedUser><Profile /></ProtectedUser> : <Navigate to='/login' />} />
+          <Route path='/users/:id' element={ isAuthenticated ? <ProtectedUser> <Profile /> </ProtectedUser> : <Navigate to='/login' />} />
 
       <Route path='/hotel/search' element={<SearchResultList />} />
       <Route path='/confirmation/:id' element={<Confirmation />} />
