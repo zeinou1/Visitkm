@@ -29,9 +29,9 @@ const userSlice = createSlice({
     user: null,
     error: null,
     token: "" ,
-    // connected: !!localStorage.getItem('token'),//? rester connecter meme apres actualisation de la pasge 
+    // connected: !!localStorage.getItem('token'),//? rester connecter meme apres actualisation de la pasge  !!localStorage.getItem('userToken')
     id: localStorage.getItem('userId') || null,
-    isAuthenticated: !!localStorage.getItem('userToken'),
+    isAuthenticated: "",
   },
   reducers: {
     logout: (state) => {
@@ -49,12 +49,13 @@ const userSlice = createSlice({
       builder.addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.isAuthenticated = false;
         state.user = null;
       })
       builder.addCase(loginUser.fulfilled, (state, { payload }) => {
         state.loading = false;
         state.user = payload.data;
-        state.token =payload.token;
+        state.token = payload.data.token;
         state.error = null;
         state.id = payload?._id;
         state.isAuthenticated = true;
@@ -64,6 +65,7 @@ const userSlice = createSlice({
       builder.addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         state.user = null;
+        state.isAuthenticated = false;
         if (action.error.message === "Login failed") {
           state.error = "Email or password incorrect";
         } else {

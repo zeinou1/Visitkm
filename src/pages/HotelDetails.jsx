@@ -156,11 +156,12 @@ const HotelDetails = () => {
     console.log(formReservation);
     //! if information is available
     try {
-      //TODO! verifie si l utilisateur existe
-
-      if (!user) {
-        return alert("Booking failed !");
+      //TODO! verifie si l utilisateur existe et bien connnecté
+      if(!formReservation < 0 ) {
+        alert("Veilleur remplir le formulaire et vous connectez")
       }
+
+
 
       const res = await fetch(`${BASE_URL}/booking`, {
         method: "post",

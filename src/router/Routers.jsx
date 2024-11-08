@@ -13,7 +13,7 @@ import {useSelector} from "react-redux";
 
 
 const Routers = () => {
-  const {connected} = useSelector((state) => state.user)
+  const {isAuthenticated} = useSelector((state) => state.user)
   return (
     <Routes>
       <Route path='/' element={<Navigate to='/home' />} />
@@ -23,8 +23,7 @@ const Routers = () => {
       <Route path='/login/' element={<Login />} />
       <Route path='/register' element={<Register />} />
 
-      <Route path='/users/:id' element={<ProtectedUser><Profile /></ProtectedUser>} />
-
+          <Route path='/users/:id' element={ isAuthenticated ? <ProtectedUser><Profile /></ProtectedUser> : <Navigate to='/login' />} />
 
       <Route path='/hotel/search' element={<SearchResultList />} />
       <Route path='/confirmation/:id' element={<Confirmation />} />
