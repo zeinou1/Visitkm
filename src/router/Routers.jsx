@@ -1,11 +1,9 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Confirmation from "../components/Confirmation/Confirmation.jsx";
 import Merci from "../components/Confirmation/paymentsmethode/Merci.jsx";
 import Profile from "../components/users/Profile.jsx";
-import ProtectedUser from "../components/users/userProtected/ProtectedUser";
-import { checkAuthStatus } from "../redux/actions/authActions"; // Adjust the import path as necessary
+import ProtectedUser from "../components/users/userProtected/ProtectedUser"; 
 import Home from "./../pages/Home.jsx";
 import Hotel from "./../pages/Hotel.jsx";
 import HotelDetails from "./../pages/HotelDetails.jsx";
@@ -14,11 +12,8 @@ import Register from "./../pages/Register.jsx";
 import SearchResultList from "./../pages/SearchResultList";
 
 const Routers = () => {
-  const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(checkAuthStatus());
-  }, [dispatch]);
+
   const { isAuthenticated } = useSelector((state) => state.user);
   return (
     <Routes>
