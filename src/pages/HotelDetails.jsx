@@ -1,14 +1,8 @@
 import { FaMapMarkerAlt } from "react-icons/fa";
-import { FaWifi } from "react-icons/fa";
-import { FaParking } from "react-icons/fa";
-import { FaSwimmingPool } from "react-icons/fa";
-import { TbAirConditioning } from "react-icons/tb";
-import { GrBusinessService } from "react-icons/gr";
+
 import { useParams } from "react-router-dom";
 import { useState, useContext } from "react";
-import dataList from "../assets/data/tours.js";
-import Vuegenerale from "./Vuegenerale.jsx";
-import AvisG from "./AvisG.jsx";
+
 import Newsletter from "../shared/Newsletter";
 import { BASE_URL } from "../utils/config.js";
 import useFetch from "../hooks/useFetch.js";
@@ -17,7 +11,6 @@ import { useRef, useEffect } from "react";
 import { IoStarOutline } from "react-icons/io5";
 import avatar from "../assets/images/img-booking/avatar.png";
 //! Reservation
-import Reserver from "../components/Reservation/Reserver";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux"
@@ -334,40 +327,7 @@ const HotelDetails = () => {
                         <div className="mt-7 p-[30px]">
                           <h6 className="dark:text-white">Top facilities</h6>
                           <div>
-                            {/* <ul className="grid grid-cols-2 ">
-                          {caracteristique.map((crt) => (
-                            <li key={crt} className="no-underline ">
-                              {crt === "wifi" ? (
-                                <span className="flex items-center gap-3">
-                                  <FaWifi />
-                                  {crt}
-                                </span>
-                              ) : crt === "parking" ? (
-                                <span className="flex items-center gap-3">
-                                  <FaParking />
-                                  {crt}
-                                </span>
-                              ) : crt === "pool" ? (
-                                <span className="flex items-center gap-3">
-                                  <FaSwimmingPool />
-                                  {crt}
-                                </span>
-                              ) : crt === "business-services" ? (
-                                <span className="flex items-center gap-3">
-                                  <GrBusinessService />
-                                  {crt}
-                                </span>
-                              ) : crt === "aircondition" ? (
-                                <span className="flex items-center gap-3">
-                                  <TbAirConditioning />
-                                  {crt}
-                                </span>
-                              ) : (
-                                ""
-                              )}
-                            </li>
-                          ))}
-                        </ul> */}
+                        
                           </div>
                         </div>
                       </div>

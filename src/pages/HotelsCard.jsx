@@ -4,7 +4,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { IoStarOutline } from "react-icons/io5";
 import calculateAvgRating from "../utils/avgRating";
 const HotelsCard = ({ data }) => {
-  //! changement de l id pour récupere l id de la base d donnée
+  //! changement de l id pour récuperer l id dans la base d donnée
   const {
     title,
     city,

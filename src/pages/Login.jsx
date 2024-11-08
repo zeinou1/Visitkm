@@ -32,17 +32,7 @@ const Login = () => {
     e.preventDefault();
 
     //! dispatch
-    //  dispatch(loginUser(login)).then((result) =>{
-
-    //    if(result.payload && result.payload.data){
-    //     console.log("result de result",result.payload.data._id);
-    //     if(result.payload.email === null) {
-    //       errorMail()
-    //     }
-
-    //     navigate(`/users/${result.payload.data._id}`);
-    //   }
-    //  } )
+   
 
     dispatch(loginUser(login)).then((result) => {
       if (result.error) {

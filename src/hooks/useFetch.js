@@ -25,7 +25,7 @@ const useFetch = (url) => {
         // si on a le donnée on met le loader en false
         setLoading(false);
       } catch (error) {
-        setError("Impossible de récuperer les  données", error.message);
+        setError("Données non disponible...", error.message);
         setLoading(false);
         // alert("Impossible de récuperer les  données", error);
       }

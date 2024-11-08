@@ -41,19 +41,3 @@ const HotelsList = () => {
   );
 };
 export default HotelsList;
-// className="md:px-1 
-// flex
-// flex-col
-// items-center
-// justify-center
-// md:grid
-// md:grid-cols-2
-// sm:grid
-// sm:grid-cols-2
-// sm:gap-8
-// md:gap-8
-// mx-4
-// lg:grid
-// lg:grid-cols-3
-// lg:gap-8
-// mt-0

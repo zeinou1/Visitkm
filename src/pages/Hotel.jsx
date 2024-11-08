@@ -17,6 +17,7 @@ const Hotel = () => {
     error,
   } = useFetch(`${BASE_URL}/hotels?page=${page}`);
   const { data: countAllHotels } = useFetch(`${BASE_URL}/hotels/search/countHotel`);
+  
   // console.log(dataHotels);
 
   useEffect(() => {
