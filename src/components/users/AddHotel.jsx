@@ -6,8 +6,14 @@ import { useUser } from "../../utils/config.js";
 // import toast
 
 import { toast } from "react-toastify";
+// import cloudinary
+import uploadImageCloudinary from "../../utils/uploadCloudinary.js";
 
-const AddHotel = () => {
+const AddHotel = ({profile}) => {
+  // Gestion importation image
+  const [selectedFile, setSelectedFile] = useState(null)
+  const [displayFile, setDisplayFile] = useState(null)
+  // End importation image
   const { error } = useSelector((state) => state.hotel);
   console.log(error);
   
@@ -17,7 +23,7 @@ const AddHotel = () => {
   const formEmpty = () => toast.error("Empty form !");
   const dispatch = useDispatch();
 
-  const profile = useSelector((state) => state.profile);
+  // const profile = useSelector((state) => state.profile);
 
   const [hotelData, setHotelData] = useState({
     title: "",
@@ -27,7 +33,7 @@ const AddHotel = () => {
     price: "",
     maxGroupSize: "",
     desc: "",
-    photo: "",
+    photo: "selectedFile",
     featured: false,
     reviews: [],
   });
@@ -52,20 +58,31 @@ const AddHotel = () => {
   //       .catch((error) => {});
   //   }
   // }, [dispatch, id, token]);
+
   const handleChange = (e) => {
-    const { id, value, type, checked, files } = e.target;
+    const { id, value, type, checked } = e.target;
     setHotelData((prevData) => ({
       ...prevData,
-      [id]: type === "checkbox" ? checked : type === "file" ? files[0] : value || "",
+      [id]: type === "checkbox" ? checked : value || "",
     }));
   };
 
+  const inputFileChange = async (e) => {
+    console.log("test value imf", e.target.files)
+    const file = e.target.files[0]
+    console.log(file)
+    const data = await uploadImageCloudinary(file)
+    setDisplayFile(data.url)
+    setSelectedFile(data.url)
+    setHotelData({...hotelData, photo: data.url})
+  }
   const handleSubmitHotel = (e) => {
     e.preventDefault();
     console.log(hotelData);
     alert("data hotel submit");
     // console.log("Token vérifié avant dispatch :", token);
-     //TODO: les payload sont les charge utilise qu'on passe a notre slice 
+     //TODO: les payload sont les charge utilise qu'on passe a notre slice
+
     dispatch(hotelAdd({ hotelData, token })).then((result) => {
       if (
         result.payload &&
@@ -93,11 +110,14 @@ const AddHotel = () => {
 
   return (
     <section className="max-w-7xl px-[20px] mt-14 bg-gray-100 shadow-xl mb-16 dark:bg-black">
-      <div className="mx-auto">
+      <div className="mx-auto relative">
         <div>
-          <h6 className="text-center text-2xl font-bold uppercase mb-6 text-blue-600 underline">
-            Ajouter un hotel
-          </h6>
+          <div className="">
+            <h6 className="text-left text-2xl font-bold uppercase mb-6 text-blue-600 underline">
+              Ajouter un hotel
+            </h6>
+            <h5 className="absolute right-1 -top-20  text-xl font-bold  mb-6 text-gray-900 underline">Nom admin hotel: {profile.username}</h5>
+          </div>
           <form>
             <div className="md:grid md:grid-cols-3 md:items-center md:justify-center">
               <div className="group__item mb-4">
@@ -105,11 +125,11 @@ const AddHotel = () => {
                   Title
                 </label>
                 <input
-                  onChange={handleChange}
-                  type="text"
-                  id="title"
-                  placeholder="Hotel Title"
-                  className="block input border border-gray-900 focus:outline-none mt-2"
+                    onChange={handleChange}
+                    type="text"
+                    id="title"
+                    placeholder="Hotel Title"
+                    className="block input border border-gray-900 focus:outline-none mt-2"
                 />
               </div>
 
@@ -118,11 +138,11 @@ const AddHotel = () => {
                   City
                 </label>
                 <input
-                  onChange={handleChange}
-                  type="text"
-                  id="city"
-                  placeholder="Hotel city"
-                  className="block input border border-gray-900 focus:outline-none mt-2"
+                    onChange={handleChange}
+                    type="text"
+                    id="city"
+                    placeholder="Hotel city"
+                    className="block input border border-gray-900 focus:outline-none mt-2"
                 />
               </div>
               <div className="group__item mt-4">
@@ -130,11 +150,11 @@ const AddHotel = () => {
                   address
                 </label>
                 <input
-                  type="text"
-                  id="address"
-                  placeholder="Hotel address"
-                  onChange={handleChange}
-                  className="block input border border-gray-900 focus:outline-none mt-2"
+                    type="text"
+                    id="address"
+                    placeholder="Hotel address"
+                    onChange={handleChange}
+                    className="block input border border-gray-900 focus:outline-none mt-2"
                 />
               </div>
 
@@ -143,11 +163,11 @@ const AddHotel = () => {
                   Distance
                 </label>
                 <input
-                  type="number"
-                  id="distance"
-                  placeholder="distance"
-                  onChange={handleChange}
-                  className="block input border border-gray-900 focus:outline-none mt-2"
+                    type="number"
+                    id="distance"
+                    placeholder="distance"
+                    onChange={handleChange}
+                    className="block input border border-gray-900 focus:outline-none mt-2"
                 />
               </div>
 
@@ -156,11 +176,11 @@ const AddHotel = () => {
                   Price
                 </label>
                 <input
-                  type="number"
-                  id="price"
-                  placeholder="Price"
-                  onChange={handleChange}
-                  className="block input border border-gray-900 focus:outline-none mt-2"
+                    type="number"
+                    id="price"
+                    placeholder="Price"
+                    onChange={handleChange}
+                    className="block input border border-gray-900 focus:outline-none mt-2"
                 />
               </div>
 
@@ -169,11 +189,11 @@ const AddHotel = () => {
                   maxGroupSize
                 </label>
                 <input
-                  type="number"
-                  id="maxGroupSize"
-                  placeholder="maxGroupSize"
-                  onChange={handleChange}
-                  className="block input border border-gray-900 focus:outline-none mt-2"
+                    type="number"
+                    id="maxGroupSize"
+                    placeholder="maxGroupSize"
+                    onChange={handleChange}
+                    className="block input border border-gray-900 focus:outline-none mt-2"
                 />
               </div>
 
@@ -182,10 +202,10 @@ const AddHotel = () => {
                   Description
                 </label>
                 <textarea
-                  id="desc"
-                  placeholder="Description"
-                  onChange={handleChange}
-                  className="block input border border-gray-900 focus:outline-none mt-2"
+                    id="desc"
+                    placeholder="Description"
+                    onChange={handleChange}
+                    className="block input border border-gray-900 focus:outline-none mt-2"
                 />
               </div>
               <div className="group__item mt-4">
@@ -193,33 +213,43 @@ const AddHotel = () => {
                   Photo
                 </label>
                 <input
-                  type="file"
-                  id="photo"
-                  placeholder="Photo"
-                  onChange={handleChange}
-                  className="file-input file-input-bordered file-input-info w-full max-w-xs"
+                    type="file"
+                    id="photo"
+                    placeholder="Photo"
+                    accept=".jpg, .png, .jpeg, .webp"
+                    onChange={inputFileChange}
+                    className="w-full max-w-xs"
                 />
+                {selectedFile && <figure
+                    className="w-[60px] h-[60px] rounded-full border-2 border-solid border-primaryColor flex items-center justify-center">
+                  <img src={displayFile} alt="" className="w-full rounded-full"/>
+                </figure>
+                }
               </div>
               <div className="group__item  ">
                 <label htmlFor="maxGroupSize" className="text-xl pb-10 text-green-800 ">
                   featured
                 </label>
                 <input
-                  type="checkbox"
-                  id="featured"
-                  checked={hotelData.featured}
-                  onChange={handleChange}
-                  className="checkbox"
+                    type="checkbox"
+                    id="featured"
+                    checked={hotelData.featured}
+                    onChange={handleChange}
+                    className=""
                 />
               </div>
             </div>
             <button
-              onClick={handleSubmitHotel}
-              className="btn mt-6 bg-blue-700 text-white"
+                onClick={handleSubmitHotel}
+                className="btn mt-6 bg-blue-700 text-white"
             >
               Add Hotel
             </button>
+            <div className="displayphoto">
+
+            </div>
           </form>
+
         </div>
       </div>
     </section>

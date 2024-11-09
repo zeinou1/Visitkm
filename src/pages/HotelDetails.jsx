@@ -72,6 +72,7 @@ const HotelDetails = () => {
   const handleSubmitAvis = async (e) => {
     e.preventDefault();
     const reviewText = avisRef.current.value; // meme nom que celui du schemas sinon bug
+
     // alert(`${textRating} , ${hotelRating}`); // test recup donnée
 
     try {

@@ -57,8 +57,8 @@ const Profile = () => {
                     </button>
                 </div>
                 {displayUser === "profile infos" && <ProfileInfos loading={loading} profile={profile}/>}
-                {displayUser === "edit" && <Settings/>}
-                {displayUser === "addUser" && <AddHotel/>}
+                {displayUser === "edit" && <Settings loading={loading} profile={profile}/>}
+                {displayUser === "addUser" && <AddHotel profile={profile}/>}
 
             </div>
         </section>

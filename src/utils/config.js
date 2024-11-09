@@ -6,7 +6,7 @@ export const useUser = () => {
     const id =  localStorage.getItem("userId");
     // const token = localStorage.getItem("userToken");
     const token = localStorage.getItem("userToken");
-    console.log("testUser", id, token);
+    // console.log("testUser", id, token);
     // return { id: user.user.data._id, token: user.token };
     return { 
         id, 
@@ -14,3 +14,7 @@ export const useUser = () => {
         
      };
 };
+
+// export token and id
+export const token = localStorage.getItem('userToken')
+export const id = localStorage.getItem('userId')

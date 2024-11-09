@@ -105,7 +105,7 @@ const Home = () => {
                                     <p>Aucun hotel trouver</p>
                                 ) : (
 
-                                   hotel.map((item) => {
+                                    hotel.map((item) => {
                                         if (item.featured === true) { // si on passe par une instruction on utilise if
                                             return (
                                                 <div key={item.id}>
@@ -139,35 +139,39 @@ const Home = () => {
              sm:grid sm:grid-cols-2 sm:gap-3
             "
                         >
-                            {hotel.map((item, index) => {
-                                if (item.reviews.length >= 5 ) {
-                                    return (
-                                        <div
-                                            key={index}
-                                            className="relative
+                            {
+                                hotel.length === 0 ? <p> Aucun hotel trouvé</p> : hotel.map((item, index) => {
+                                    if (item.reviews.length >= 1) {
+                                        return (
+                                            <div
+                                                key={index}
+                                                className="relative
                       "
-                                        >
-                                            <div>
-                                                <img
-                                                    src={item.photo}
-                                                    alt=""
-                                                    className="lg:w-[295px] lg:h-[200px] rounded-md"
-                                                />
-                                            </div>
+                                            >
+                                                <div>
+                                                    <img
+                                                        src={item.photo}
+                                                        alt=""
+                                                        className="lg:w-[295px] lg:h-[200px] rounded-md"
+                                                    />
+                                                </div>
 
-                                            <div className="">
+                                                <div className="">
                         <span className="text-[20px] text-gray-950 font-[400]">
                           {item.name}
                         </span>
-                                                <p className="text-[16px]  font-[300]">
-                                                    <Link to={`/hotels/${item._id}`}> {item.desc} </Link>
-                                                </p>
+                                                    <p className="text-[16px]  font-[300]">
+                                                        <Link to={`/hotels/${item._id}`}> {item.desc} </Link>
+                                                    </p>
+                                                </div>
                                             </div>
-                                        </div>
-                                    );
-                                }
-                                return null;
-                            })}
+                                        );
+
+                                    }
+                                    return <p>Ici on affiche nos meilleur hotels👌👌 </p>;
+                                })}
+
+
                         </div>
                     </div>
                 </div>
