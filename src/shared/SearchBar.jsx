@@ -94,6 +94,9 @@ const SearchBar = () => {
                 <i className="ri-maps-line"></i>
               </span>
               <div>
+              <span className="pl-4 sm:pl-0 ">
+              <i className="ri-pin-distance-line"></i>
+              </span>
                 <input
                   type="number"
                   placeholder="Distance"
