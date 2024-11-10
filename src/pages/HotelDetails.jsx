@@ -16,6 +16,9 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux"
 // avis methode
 // import { AuthContext } from "../context/AuthContext.jsx";
+// toastify
+import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const HotelDetails = () => {
   // gestion  avis
@@ -158,6 +161,7 @@ const HotelDetails = () => {
 
 
       const res = await fetch(`${BASE_URL}/booking`, {
+        
         method: "post",
         headers: { "content-type" : "application/json",
           authorization: `Bearer ${token}`,
@@ -165,13 +169,23 @@ const HotelDetails = () => {
         credentials: "include",
         body: JSON.stringify(formReservation),
       });
+       // test user undefined
+       if (!user) {
+        toast.error("Veuillez vous connecter pour faire une réservation")
+        navigate('/login');
+        return false;
+      }
+
+      //? test result
       const result = await res.json();
       if (!res.ok) {
-        return alert(result.message);
+        return console.log(result.message);
       }
+     
       navigate(`/confirmation/${id}`, {
         state: { hotelData: DataHotel, reservationData: formReservation },
       }); //? recup id hotel et les informations de reservation
+      toast.success("Reservation submit successfully")
     } catch (error) {
       alert(error.message);
     }

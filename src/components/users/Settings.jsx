@@ -70,6 +70,7 @@ const Settings = ({profile}) => {
                                     id="email"
                                     name="name"
                                     placeholder={profile.email}
+                                    disabled={profile.email}
                                     className=" block px-4 py-2 border border-gray-950 rounded-md mt-2"
                                 />
 

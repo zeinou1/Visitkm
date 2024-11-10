@@ -3,6 +3,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+// import toastify
+import 'react-toastify/dist/ReactToastify.css';
 
 const Reserver = ({ data, calculateAvgRating }) => {
   const { price, reviews } = data;
@@ -44,14 +47,15 @@ const Reserver = ({ data, calculateAvgRating }) => {
       credentials.email &&
       credentials.phone &&
       credentials.dateEntree &&
-      credentials.guestNumber > 0
+      credentials.guestNumber > 0 
     ) {
-      navigate(`/confirmation/${data.id}`, {
+      navigate(`/confirmation/${data.id}/${user.username}`, {
         state: { hotelData: data, reservationData: credentials },
       }); //? recup id hotel et les informations de reservation
     } else {
       alert("Veuillez Remplir le formulaire");
     }
+   
   };
   //? End send Data information to backend
   /*

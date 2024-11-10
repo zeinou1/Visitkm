@@ -6,17 +6,11 @@ import { useSelector } from "react-redux";
 export const ProtectedUser = ({ children }) => {
   const navigate = useNavigate();
   const { isAuthenticated } = useSelector((state) => state.user);
+console.log("ProtectedUser",isAuthenticated);
 
   useEffect(() => {
     if (!isAuthenticated) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("userToken");
-      localStorage.removeItem("userId");
-      sessionStorage.removeItem("token");
-      sessionStorage.removeItem("userToken");
-      sessionStorage.removeItem("userId");
-      sessionStorage.removeItem("isAuthenticated");
-
+      localStorage.clear(); 
       navigate("/");
     } else {
       sessionStorage.setItem("isAuthenticated", "true");

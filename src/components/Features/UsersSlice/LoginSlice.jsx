@@ -25,13 +25,19 @@ export const loginUser = createAsyncThunk("user/loginUser", async (login,{ rejec
 const userSlice = createSlice({
   name: "user",
   initialState: {
+    // loading: false,
+    // user: null,
+    // error: null,
+    // token: !!localStorage.getItem('userToken') ,
+    // // connected: !!localStorage.getItem('token'),//? rester connecter meme apres actualisation de la pasge  !!localStorage.getItem('userToken')
+    // id: !!localStorage.getItem("userId"),
+    // isAuthenticated: "",
     loading: false,
     user: null,
     error: null,
-    token: !!localStorage.getItem('userToken') ,
-    // connected: !!localStorage.getItem('token'),//? rester connecter meme apres actualisation de la pasge  !!localStorage.getItem('userToken')
-    id: !!localStorage.getItem("userId"),
-    isAuthenticated: "",
+    token: !!localStorage.getItem('userToken'),
+    id: localStorage.getItem("userId") || null,
+    isAuthenticated: !!localStorage.getItem('userToken'),
     
   },
   reducers: {
