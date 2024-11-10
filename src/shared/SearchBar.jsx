@@ -93,7 +93,7 @@ const SearchBar = () => {
               <span className="pl-4 sm:pl-0">
                 <i className="ri-maps-line"></i>
               </span>
-              <div>
+              <div className="flex items-center justify-center gap-2">
               <span className="pl-4 sm:pl-0 ">
               <i className="ri-pin-distance-line"></i>
               </span>

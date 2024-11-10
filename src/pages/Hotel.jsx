@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import SectionCommon from "../shared/SectionCommun";
 import Newsletter from "../shared/Newsletter";
 import HotelsCard from "../pages/HotelsCard";
+import nodata from "../assets/images/nodata.svg";
 //! data source
 import useFetch from "../hooks/useFetch";
 import { BASE_URL } from "../utils/config";
@@ -35,8 +36,13 @@ const Hotel = () => {
         <div className="mb-[100px] ">
           <SectionCommon title="Nos hotels" />
         </div>
-        {loading && <h4 className="text-center"> Loading...</h4>}
-        {error && <h4>{error}</h4>}
+            <div className="flex items-center justify-center px-5">
+            {loading && <h4 className="text-center"> Loading...</h4>}
+        {error && <h4> 
+          {error}
+          <img src={nodata} alt="Not data" className="max-w-md max-h-md mt-4 " />
+         </h4>}
+            </div>
         {/* Hotels List */}
 
         {!loading && !error && (
