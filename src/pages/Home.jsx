@@ -168,7 +168,7 @@ const Home = () => {
                                         );
 
                                     }
-                                    return <p>Ici on affiche nos meilleur hotels👌👌 </p>;
+                                    return <p key={index}>Ici on affiche nos meilleurs hotels👌👌 </p>;
                                 })}
 
 
