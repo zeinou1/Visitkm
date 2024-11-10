@@ -2,10 +2,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 
 const Reserver = ({ data, calculateAvgRating }) => {
   const { price, reviews } = data;
 
+  const { user } = useSelector((state)=> state.user)
+  console.log("Utilisateur test",user);
+  
   const { avgRating, totalRating } = calculateAvgRating(reviews);
   const navigate = useNavigate();
   //? test useForm
@@ -16,7 +20,7 @@ const Reserver = ({ data, calculateAvgRating }) => {
    *? using useState
    */
   const [credentials, setCredentials] = useState({
-    userId: "01", //! a récuperer dynamiquement aprés
+    userId: user && user._id, //! a récuperer dynamiquement aprés
     email: "zarios@gmail.com",
     name: "",
     phone: "",

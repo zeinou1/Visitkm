@@ -79,33 +79,17 @@ const AddHotel = ({profile}) => {
   const handleSubmitHotel = (e) => {
     e.preventDefault();
     console.log(hotelData);
-    alert("data hotel submit");
+    // alert("data hotel submit");
     // console.log("Token vérifié avant dispatch :", token);
      //TODO: les payload sont les charge utilise qu'on passe a notre slice
 
-    dispatch(hotelAdd({ hotelData, token })).then((result) => {
-      if (
-        result.payload &&
-        result.payload.success === false &&
-        result.payload.message === "token is invalid"
-      ) {
-        console.error("Le token est invalide ou expiré");
-        errorhotel();
-      } else {
-        setHotelData({
-          title: "",
-          city: "",
-          address: "",
-          distance: "",
-          price: "",
-          maxGroupSize: "",
-          desc: "",
-          photo: "",
-          featured: false,
-          reviews: [],
-        });
-      }
-    });
+    dispatch(hotelAdd({ hotelData, token }))
+    .then(() => {
+      toast.success("Hotel add succefully !")
+    })
+    .catch(()=> {
+      toast.error('Failled to add hotel')
+    })
   };
 
   return (

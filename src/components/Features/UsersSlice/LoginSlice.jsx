@@ -28,10 +28,11 @@ const userSlice = createSlice({
     loading: false,
     user: null,
     error: null,
-    token: "" ,
+    token: !!localStorage.getItem('userToken') ,
     // connected: !!localStorage.getItem('token'),//? rester connecter meme apres actualisation de la pasge  !!localStorage.getItem('userToken')
-    id: localStorage.getItem('userId') || null,
+    id: !!localStorage.getItem("userId"),
     isAuthenticated: "",
+    
   },
   reducers: {
     logout: (state) => {
@@ -53,14 +54,18 @@ const userSlice = createSlice({
         state.user = null;
       })
       builder.addCase(loginUser.fulfilled, (state, { payload }) => {
+       if(payload) {
+        console.log("ma payload", payload);
+        
         state.loading = false;
         state.user = payload.data;
         state.token = payload.data.token;
         state.error = null;
-        state.id = payload?._id;
+        state.id = payload?.data._id;
         state.isAuthenticated = true;
         localStorage.setItem('userToken', payload.token);
         localStorage.setItem('userId', payload.data._id);
+       }
       })
       builder.addCase(loginUser.rejected, (state, action) => {
         state.loading = false;

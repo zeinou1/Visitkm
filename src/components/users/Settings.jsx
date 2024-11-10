@@ -1,27 +1,41 @@
-import {useDispatch} from "react-redux";
-import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {useState,useEffect} from "react";
 import {updateUser} from '../Features/UsersSlice/ProfileSlice.jsx'
-
+import {useUser} from "../../utils/config.js"
+import {toast} from 'react-toastify'; // Import toast
+import 'react-toastify/dist/ReactToastify.css';
 const Settings = ({profile}) => {
+
+    // toast
+
     const token = localStorage.getItem("userToken")
     const id = localStorage.getItem("userId")
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+    // const {id, token} = useUser();
+   
+
     const [updateProfile, setUpdateUser] = useState(
         {
             username: "",
         },
     )
-
     const handleChange = (e) => {
         setUpdateUser({
             ...updateProfile, [e.target.id]: e.target.value
         })
     }
+    const {loading,error} = useSelector((state) => state.user)
 
     // send value
     const handleSubmit =(e) => {
         e.preventDefault()
-        dispatch(updateUser({updateProfile,token,id}))
+         dispatch(updateUser({updateProfile,token,id}))
+         .then(() => {
+            toast.success("profile update successfully")
+         })
+         .catch(() => {
+            toast.error("failled to update profile")
+         })
     }
 
     return (

@@ -1,6 +1,18 @@
-
+import { useDispatch } from "react-redux";
+import { deleteUser } from "../Features/UsersSlice/ProfileSlice";
+import { useUser } from "../../utils/config";
 
 const ProfileInfos = ({loading, profile}) => {
+    console.log("ProfileInfos",profile);
+    //? delete user
+    const dispatch = useDispatch();
+    const {id, token} = useUser();
+
+    const handleDelete = () => {
+        dispatch(deleteUser({id, token}))
+    }
+
+
     return (
         <>
             <section className="max-w-7xl px-[0px] mt-14 bg-gray-100 shadow-xl mb-16 dark:bg-black">
@@ -18,6 +30,11 @@ const ProfileInfos = ({loading, profile}) => {
                         </div>
                     </div>
                 )}
+                <div className="flex justify-center">
+                    <button 
+                    onClick={handleDelete}
+                    className="bg-red-500 text-white px-5 py-2 rounded-md"> Delete Account</button>
+                </div>
             </section>
         </>
     );
