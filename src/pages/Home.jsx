@@ -102,7 +102,7 @@ const Home = () => {
                         >
                             {
                                 hotel.length === 0 ? (
-                                    <p>Aucun hotel trouver</p>
+                                    <p>Standby database, sorry😢😢</p>
                                 ) : (
 
                                     hotel.map((item) => {
@@ -140,7 +140,7 @@ const Home = () => {
             "
                         >
                             {
-                                hotel.length === 0 ? <p> Aucun hotel trouvé</p> : hotel.map((item, index) => {
+                                hotel.length === 0 ? <p> Standby database, sorry😢😢</p> : hotel.map((item, index) => {
                                     if (item.reviews.length >= 1) {
                                         return (
                                             <div
