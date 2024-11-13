@@ -1,5 +1,5 @@
 import { FaMapMarkerAlt } from "react-icons/fa";
-import maps from "../images/img-booking/maps.png";
+import maps from "../assets/images/img-booking/maps.png";
 import { useParams } from "react-router-dom";
 import { useState, useContext } from "react";
 
@@ -350,7 +350,7 @@ const HotelDetails = () => {
                   <div className="md:w-[35%]">
                     <div>
                       <div className="pt-4">
-                        <img src={ maps} alt="maps" />
+                        <img src={maps} alt="maps" />
                       </div>
                     </div>
                     {/* reservation form */}
