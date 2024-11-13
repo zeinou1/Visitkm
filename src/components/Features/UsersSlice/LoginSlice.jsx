@@ -61,10 +61,10 @@ const userSlice = createSlice({
       })
       builder.addCase(loginUser.fulfilled, (state, { payload }) => {
        if(payload) {
-        console.log("ma payload", payload);
+        console.log("My payload", payload);
         
         state.loading = false;
-        state.user = payload.data;
+        state.user = payload;
         state.token = payload.data.token;
         state.error = null;
         state.id = payload?.data._id;

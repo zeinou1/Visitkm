@@ -10,6 +10,9 @@ const Profile = () => {
     const dispatch = useDispatch();
 
     const profile = useSelector((state) => state.profile);
+    // const {user.role: role} = useSelector((state) => state.user);
+    // const role = user.role
+    // console.log("user idididididi",user.role);
     
     const {loading, error} = useSelector((state) => state.user);
 
@@ -57,8 +60,13 @@ const Profile = () => {
                     </button>
                 </div>
                 {displayUser === "profile infos" && <ProfileInfos loading={loading} profile={profile}/>}
+
                 {displayUser === "edit" && <Settings loading={loading} profile={profile}/>}
-                {displayUser === "addUser" && <AddHotel profile={profile}/>}
+
+                {
+                displayUser === "addUser" &&  <AddHotel profile={profile}/> 
+                
+                }
 
             </div>
         </section>

@@ -1,13 +1,14 @@
 import { useDispatch } from "react-redux";
 import { deleteUser } from "../Features/UsersSlice/ProfileSlice";
 import { useUser } from "../../utils/config";
+import { useSelector } from "react-redux";
 
 const ProfileInfos = ({loading, profile}) => {
     console.log("ProfileInfos",profile);
     //? delete user
     const dispatch = useDispatch();
     const {id, token} = useUser();
-
+ 
     const handleDelete = () => {
         dispatch(deleteUser({id, token}))
     }
