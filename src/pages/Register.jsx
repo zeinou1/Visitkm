@@ -67,7 +67,7 @@ const Register = () => {
             </div>
             <div className="login__form mt-16 ">
               <h5 className="md:text-3xl text-gray-350 mb-8">Sign Up</h5>
-              <form className=" pr-3">
+              <form className="">
                 <div className="form__group">
                   <input
                     type="text"
@@ -109,14 +109,16 @@ const Register = () => {
                 </button>
               </form>
             </div>
-            <p className="mt-8 text-gray-600 text-md">
+            <div className="mt-8 text-gray-600 text-md ">
             Vous avez déjà un compte ?{" "}
               <span className="text-red-400">
-                <Link to="/login" className="cursor-pointer pl-2 ">
-                  Login !
+                <Link to="/login" className="cursor-pointer ">
+               <button className="btn btn-secondary bg-gray-900 w-full text-white dark:text-white mb-4">
+               Login 
+                  </button>
                 </Link>
               </span>
-            </p>
+            </div>
           </div>
         </div>
       </div>

@@ -66,7 +66,7 @@ const Login = () => {
             </div>
             <div className="login__form mt-16 ">
               <h5 className="md:text-3xl text-gray-950 mb-8">Login</h5>
-              <form className=" pr-3">
+              <form className=" ">
                 <div className="form__group">
                   <input
                     type="email"
@@ -101,9 +101,9 @@ const Login = () => {
             <p className="mt-8 text-white text-md">
               {" "}
             
-              <span className="text-red-400">
+              <span className="text-red-400 mx-auto ">
                 <Link to="/register" className="cursor-pointer ">
-                S'inscrire  ici <i className="ri-arrow-right-fill"></i> {" "}
+                   <button className="btn btn-secondary bg-gray-900 px-4 w-full text-white dark:text-white mb-4">  S'inscrire  ici ! </button>
                 </Link>
               </span>
             </p>
