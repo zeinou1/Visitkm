@@ -100,7 +100,7 @@ const Login = () => {
             </div>
             <p className="mt-8 text-white text-md">
               {" "}
-              Vous n avez pas un compte ?{" "}
+              S'inscrire  {" "}
               <span className="text-red-400">
                 <Link to="/register" className="cursor-pointer ">
                   Créer un compte !

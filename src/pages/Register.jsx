@@ -110,7 +110,7 @@ const Register = () => {
               </form>
             </div>
             <p className="mt-8 text-gray-600 text-md">
-              Vous avez un compte ?{" "}
+            Vous avez déjà un compte ?{" "}
               <span className="text-red-400">
                 <Link to="/login" className="cursor-pointer pl-2 ">
                   Login !
