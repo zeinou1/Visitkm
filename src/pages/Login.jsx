@@ -100,10 +100,10 @@ const Login = () => {
             </div>
             <p className="mt-8 text-white text-md">
               {" "}
-              S'inscrire  {" "}
+            
               <span className="text-red-400">
                 <Link to="/register" className="cursor-pointer ">
-                  Créer un compte !
+                S'inscrire  ici <i className="ri-arrow-right-fill"></i> {" "}
                 </Link>
               </span>
             </p>
