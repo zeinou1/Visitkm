@@ -21,7 +21,8 @@ const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { error } = useSelector((state) => state.user);
-
+  console.log("My error", error);
+  
   // ! connection data
   const handleChange = (e) => {
     setLogin({ ...login, [e.target.id]: e.target.value });
@@ -33,19 +34,22 @@ const Login = () => {
 
     //! dispatch
    
+  
 
     dispatch(loginUser(login)).then((result) => {
       if (result.error) {
-        if (result.payload?.error === "AddHotel not found") {
+        if (result.payload?.error === "Invalid email or password") {
           toast.error("Ce compte n'existe pas.");
         } else if (result.payload?.error === "Mot de passe incorrect") {
           toast.error("Mot de passe incorrect.");
-        } else {
+        }  else if (result.payload?.error === "User not found") {
+          toast.error("User not found.");
+        }
+        else {
           toast.error("Erreur lors de la connexion. Veuillez réessayer.");
         }
       } else if (result.payload && result.payload.data) {
        toast.success('Compte connecté!', result.payload.data._id)
-      //  console.log("Utilisateur connecté avec succès :", result.payload.data._id);
         navigate(`/users/${result.payload.data._id}`);
       }
     });
@@ -66,7 +70,7 @@ const Login = () => {
             </div>
             <div className="login__form mt-16 ">
               <h5 className="md:text-3xl text-gray-950 mb-8">Login</h5>
-              <form className=" ">
+              <form className=" pr-3">
                 <div className="form__group">
                   <input
                     type="email"
@@ -96,6 +100,9 @@ const Login = () => {
                 >
                   Connexion
                 </button>
+                {
+                  error && <p className="text-red-900 text-center text-md">{error}</p>
+                }
               </form>
             </div>
             <p className="mt-8 text-white text-md">
@@ -103,7 +110,7 @@ const Login = () => {
             
               <span className="text-red-400 mx-auto ">
                 <Link to="/register" className="cursor-pointer ">
-                   <button className="btn btn-secondary bg-gray-900 px-4 w-full text-white dark:text-white mb-4">  S'inscrire  ici ! </button>
+                   <button className="btn btn-secondary bg-zinc-950 text-white px-4 w-full k dark:text-white">  S'inscrire  ici ! </button>
                 </Link>
               </span>
             </p>

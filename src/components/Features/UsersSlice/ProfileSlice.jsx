@@ -68,6 +68,8 @@ const profileSlice = createSlice({
     builder;
     builder.addCase(userProfile.fulfilled, (state, { payload }) => {
       if (payload) {
+        // console.log("User Profile Payload:", payload); 
+        
         state.username = payload.data.username || "Nom inconnu";
         state.email = payload.data.email || "Email inconnu";
         state.id = payload.data._id || "id inconnu";

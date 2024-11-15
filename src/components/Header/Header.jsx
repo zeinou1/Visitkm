@@ -170,7 +170,11 @@ function Header() {
                         className="btn btn-ghost btn-circle avatar"
                       >
                         <h5 className="font-bold text-gray-900 text-lg dark:text-slate-50">
-                          {profile.username}
+                          <div className="flex flex-col items-center justify-center ">
+                          <i className="ri-user-fill"></i> 
+                          <span className="text-sm"> {profile.username}</span>
+                          </div>
+                         
                         </h5>
                       </div>
                       <ul

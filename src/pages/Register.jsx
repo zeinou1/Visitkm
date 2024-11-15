@@ -21,7 +21,7 @@ const Register = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.register);
-  console.log(loading);
+  console.log(error);
 
   // ! Recupe data connection
   const handleChange = (e) => {
@@ -34,23 +34,37 @@ const Register = () => {
     if (!register.email || !register.password || !register.username) {
       formEmpty();
     }
-    const email = register.email; // Sauvegarder l'email d'origine
-    dispatch(addUser(register)).then((result) => {
-      if (result.data.payload) {
-        if (result.payload.error === "Email already in use") {
-          toast.error("Email already in use");
-          console.log(error.message);
-        } else {
-          if (email && /\S+@\S+\.\S+/.test(email)) {
-            setRegister(result.payload);
-            
-          } else {
-            errorMail();
-          }
+    // on vérifie si l'email est valide avant tout
+    const email = register.email;
+    
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      toast.error("Email non valide.");
+      return; 
+    }
+    // verify password
+    if (!/^(?=.*[A-Z]).{8,}$/.test(register.password)) {
+      toast.error("Mot de passe incorrect (8 caractères minimum, 1 majuscule).");
+      return; 
+    }
+
+    dispatch(addUser(register))
+      .unwrap()
+      .then((result) => {
+        if (result.data) {
+          toast.success("Compte créé avec succès!");
+          navigate(`/login`);
         }
-      }
-     
-    });
+      })
+      .catch((error) => {
+        if (error === "Email already in use") {
+          toast.error("L'email est déjà utilisé.");
+        } else if (error === "Username already in use") {
+          toast.error("Nom d'utilisateur déjà utilisé.");
+        }
+        else {
+          toast.error("Erreur lors de la connexion. Veuillez réessayer.");
+        }
+      });
   };
 
   return (
@@ -107,14 +121,15 @@ const Register = () => {
                 >
                   {loading ? "Loading..." : " Créer un compte"}
                 </button>
+                {error && <span className="text-red-700 font-bold text-center mt-2"> Sorry ! {error}</span>}
               </form>
             </div>
             <div className="mt-8 text-gray-600 text-md ">
-            Vous avez déjà un compte ?{" "}
+              Vous avez déjà un compte ?{" "}
               <span className="text-red-400">
                 <Link to="/login" className="cursor-pointer ">
-               <button className="btn btn-secondary bg-gray-900 w-full text-white dark:text-white mb-4">
-               Login 
+                  <button className="btn btn-secondary bg-gray-900 w-full text-white dark:text-white mb-4">
+                    Login
                   </button>
                 </Link>
               </span>

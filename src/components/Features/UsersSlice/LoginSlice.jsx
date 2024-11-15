@@ -16,22 +16,19 @@ export const loginUser = createAsyncThunk("user/loginUser", async (login,{ rejec
 
     return data;
   } catch (error) {
-    // console.error("Erreur dans le bloc catch:", error.message);
-    return rejectWithValue(error.data.message);
+
+    if (error.response && error.response.data && error.response.data.message) {
+      return rejectWithValue(error.response.data.message);
+    }
+    return rejectWithValue('An unexpected error occurred');
   }
+  
 });
 
 //!initialState
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    // loading: false,
-    // user: null,
-    // error: null,
-    // token: !!localStorage.getItem('userToken') ,
-    // // connected: !!localStorage.getItem('token'),//? rester connecter meme apres actualisation de la pasge  !!localStorage.getItem('userToken')
-    // id: !!localStorage.getItem("userId"),
-    // isAuthenticated: "",
     loading: false,
     user: null,
     error: null,
@@ -73,16 +70,11 @@ const userSlice = createSlice({
         localStorage.setItem('userId', payload.data._id);
        }
       })
-      builder.addCase(loginUser.rejected, (state, action) => {
-        state.loading = false;
-        state.user = null;
-        state.isAuthenticated = false;
-        if (action.error.message === "Login failed") {
-          state.error = "Email or password incorrect";
-        } else {
-          state.error = action.error.message;
-        }
-      });
+       builder.addCase(loginUser.rejected, (state, action) => {
+      state.loading = false;
+      state.register = null;
+      state.error = action.payload || action.error.message || 'An error occurred';
+    });
   },
 });
 

@@ -14,15 +14,21 @@ export const addUser = createAsyncThunk(
         },
         body: JSON.stringify(register),
       });
-      return await res.json();
-    } catch (error) {
-      console.log("erreur message");
 
-      // throw new Error('Erreur ',error.message);
-      return rejectWithValue(error.data.message);
+      // Vérifie si la réponse est dans la plage des statuts de succès
+      if (!res.ok) {
+        const errorData = await res.json(); // Essaie de récupérer le message d'erreur du backend
+        return rejectWithValue(errorData.message || 'Registration failed');
+      }
+
+      return await res.json(); // Retourne les données si tout va bien
+    } catch (error) {
+      // Attrape les erreurs liées au réseau ou à d'autres problèmes inattendus
+      return rejectWithValue('An unexpected error occurred', error.message);
     }
   }
 );
+
 
 // eslint-disable-next-line react-refresh/only-export-components
 const RegisterUser = createSlice({
@@ -51,11 +57,7 @@ const RegisterUser = createSlice({
     builder.addCase(addUser.rejected, (state, action) => {
       state.loading = false;
       state.register = null;
-      if (action.error.message === "Email already in use") {
-        state.error = "Email already in use";
-      } else {
-        state.error = action.error.message;
-      }
+      state.error = action.payload || action.error.message;
     });
   },
 });

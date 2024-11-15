@@ -205,8 +205,8 @@ const AddHotel = ({profile}) => {
                     className="w-full max-w-xs"
                 />
                 {selectedFile && <figure
-                    className="w-[60px] h-[60px] rounded-full border-2 border-solid border-primaryColor flex items-center justify-center">
-                  <img src={displayFile} alt="" className="w-full rounded-full"/>
+                    className="w-40 h-[90px] rounded-full border-2 border-solid border-primaryColor flex items-center justify-center">
+                  <img src={displayFile} alt="" className="w-full  "/>
                 </figure>
                 }
               </div>

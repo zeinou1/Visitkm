@@ -37,7 +37,7 @@ const Profile = () => {
     const [displayUser, setDisplayUser] = useState("profile infos")
 
     return (
-        <section className="container ">
+        <section className="lg:container mx-6 md:mx-auto">
             <div>
                 <div className="flex gap-10">
                     <button
